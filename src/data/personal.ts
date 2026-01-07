@@ -3,6 +3,7 @@ export interface PersonalInfo {
   shortName: string;
   role: string;
   tagline: string;
+  resume: string;
   status: [];
 }
 
@@ -17,5 +18,7 @@ export const personalInfo = {
   role: "React & MERN Stack Developer",
   tagline:
     "I build clean, scalable MERN applications with a strong focus on performance and user experience.",
+  resume:
+    "https://drive.google.com/file/d/1qgNGzyKg3xitTjglEU1ouidyrQ5y-sXu/view?usp=drive_link",
   currentStatus: statuses[0],
 };

@@ -31,7 +31,7 @@ const Home = () => {
           </a>
 
           <a
-            href="#"
+            href={personalInfo.resume}
             target="_blank"
             rel="noopener noreferrer"
             className="
