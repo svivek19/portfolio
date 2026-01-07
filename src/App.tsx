@@ -1,4 +1,5 @@
 import Navbar from "./components/Navbar";
+import Education from "./sections/Education";
 import Experience from "./sections/Experience";
 import Home from "./sections/Home";
 import Projects from "./sections/Projects";
@@ -14,6 +15,7 @@ const App = () => {
         <Skills />
         <Projects />
         <Experience />
+        <Education />
       </main>
     </div>
   );

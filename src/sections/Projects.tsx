@@ -52,7 +52,7 @@ const Projects = () => {
           ))}
         </div>
       </div>
-      <div className="mt-4 text-center">
+      <div className="text-center mt-8">
         <div className="inline-block snake-border">
           <a
             href="#"

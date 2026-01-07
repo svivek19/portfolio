@@ -24,6 +24,7 @@ export const experienceData: Experience[] = [
       "Node.js",
       "Express",
       "MongoDB",
+      "MySQL",
       "REST APIs",
       "Meta Cloud APIs",
       "VPS",
