@@ -1,4 +1,5 @@
 import { projectsData } from "../data/projects";
+import { contactData } from "../data/contact";
 import { ExternalLink, GitBranch, GitBranchIcon } from "lucide-react";
 
 const Projects = () => {
@@ -55,7 +56,7 @@ const Projects = () => {
       <div className="text-center mt-8">
         <div className="inline-block snake-border">
           <a
-            href="#"
+            href={contactData.links[0].url}
             target="_blank"
             rel="noopener noreferrer"
             className="
