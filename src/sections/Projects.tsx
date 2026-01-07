@@ -1,5 +1,5 @@
 import { projectsData } from "../data/projects";
-import { ExternalLink, GitBranch, GitBranchIcon, Github } from "lucide-react";
+import { ExternalLink, GitBranch, GitBranchIcon } from "lucide-react";
 
 const Projects = () => {
   return (
