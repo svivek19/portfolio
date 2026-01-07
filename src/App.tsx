@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar";
 import Home from "./sections/Home";
+import Skills from "./sections/Skills";
 
 const App = () => {
   return (
@@ -8,6 +9,7 @@ const App = () => {
 
       <main className="pt-24">
         <Home />
+        <Skills />
       </main>
     </div>
   );
