@@ -37,63 +37,70 @@ const Navbar = () => {
       : "opacity-70 hover:opacity-100";
 
   return (
-    <nav className="w-11/12 mx-auto my-6 relative">
-      <div className="flex justify-between items-center">
-        <h1 className="font-semibold text-3xl tracking-tight">Vivek</h1>
+    <nav className="fixed top-0 z-50 w-full backdrop-blur-3xl bg-(--bg)/70">
+      <div className="max-w-6xl mx-auto px-4 py-4 relative">
+        <div className="flex justify-between items-center">
+          <h1 className="font-semibold text-3xl tracking-tight">Vivek</h1>
 
-        <ul className="hidden sm:flex gap-8 text-lg">
-          {["home", "skills", "projects", "experience", "contact"].map(
-            (item) => (
-              <li key={item}>
-                <a
-                  href={`#${item}`}
-                  className={linkClass(item)}
-                  onClick={() => setActive(item)}
-                >
-                  {item[0].toUpperCase() + item.slice(1)}
-                </a>
-              </li>
-            )
-          )}
-        </ul>
+          <ul className="hidden sm:flex gap-8 text-lg">
+            {["home", "skills", "projects", "experience", "contact"].map(
+              (item) => (
+                <li key={item}>
+                  <a
+                    href={`#${item}`}
+                    className={linkClass(item)}
+                    onClick={() => setActive(item)}
+                  >
+                    {item[0].toUpperCase() + item.slice(1)}
+                  </a>
+                </li>
+              )
+            )}
+          </ul>
 
-        <div className="flex items-center gap-4">
-          <button
-            onClick={toggleTheme}
-            className="w-9 h-9 rounded-lg border border-black/15 dark:border-white/10 shadow-sm flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/10 transition"
-          >
-            {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
-          </button>
+          <div className="flex items-center gap-4">
+            <button
+              onClick={toggleTheme}
+              className="w-9 h-9 rounded-lg border border-black/15 dark:border-white/10 shadow-sm flex items-center justify-center hover:bg-black/5 dark:hover:bg-white/10 transition"
+            >
+              {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
+            </button>
 
-          <button onClick={() => setOpen(!open)} className="sm:hidden text-xl">
-            {open ? <X size={20} /> : <Menu size={20} />}
-          </button>
+            <button
+              onClick={() => setOpen(!open)}
+              className="sm:hidden text-xl"
+            >
+              {open ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </div>
-      </div>
 
-      {open && (
-        <ul
-          ref={menuRef}
-          className="sm:hidden absolute right-0 mt-4 w-56 rounded-2xl backdrop-blur-xl bg-white/10 border border-white/20 shadow-xl"
-        >
-          {["home", "skills", "projects", "experience", "contact"].map(
-            (item) => (
-              <li
-                key={item}
-                className="px-5 py-3"
-                onClick={() => {
-                  setActive(item);
-                  setOpen(false);
-                }}
-              >
-                <a href={`#${item}`} className={linkClass(item)}>
-                  {item[0].toUpperCase() + item.slice(1)}
-                </a>
-              </li>
-            )
-          )}
-        </ul>
-      )}
+        {open && (
+          <ul
+            ref={menuRef}
+            className={`sm:hidden absolute right-0 mt-4 w-56 rounded-2xl backdrop-blur-3xl ${
+              theme === "light" ? "bg-[#f6f7fb]" : "bg-[#0b1220]"
+            }  border border-white/20 shadow-xl`}
+          >
+            {["home", "skills", "projects", "experience", "contact"].map(
+              (item) => (
+                <li
+                  key={item}
+                  className="px-5 py-3"
+                  onClick={() => {
+                    setActive(item);
+                    setOpen(false);
+                  }}
+                >
+                  <a href={`#${item}`} className={linkClass(item)}>
+                    {item[0].toUpperCase() + item.slice(1)}
+                  </a>
+                </li>
+              )
+            )}
+          </ul>
+        )}
+      </div>
     </nav>
   );
 };
