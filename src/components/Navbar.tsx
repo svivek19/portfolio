@@ -21,6 +21,31 @@ const Navbar = () => {
   }, [theme]);
 
   useEffect(() => {
+    const sections = document.querySelectorAll("section[id]");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActive(entry.target.id);
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "-50% 0px -50% 0px",
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => {
+      sections.forEach((section) => observer.unobserve(section));
+    };
+  }, []);
+
+  useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
         setOpen(false);
@@ -80,21 +105,23 @@ const Navbar = () => {
             ref={menuRef}
             className={`sm:hidden absolute right-0 mt-4 w-56 rounded-2xl backdrop-blur-3xl ${
               theme === "light" ? "bg-[#f6f7fb]" : "bg-[#0b1220]"
-            }  border border-white/20 shadow-xl`}
+            } border border-white/20 shadow-xl`}
           >
             {["home", "skills", "projects", "experience", "contact"].map(
               (item) => (
                 <li
                   key={item}
-                  className="px-5 py-3"
+                  className="px-5 py-3 cursor-pointer"
                   onClick={() => {
-                    setActive(item);
+                    document
+                      .getElementById(item)
+                      ?.scrollIntoView({ behavior: "smooth" });
                     setOpen(false);
                   }}
                 >
-                  <a href={`#${item}`} className={linkClass(item)}>
+                  <span className={linkClass(item)}>
                     {item[0].toUpperCase() + item.slice(1)}
-                  </a>
+                  </span>
                 </li>
               )
             )}
