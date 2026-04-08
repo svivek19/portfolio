@@ -1,5 +1,4 @@
 import Navbar from "./components/Navbar";
-import ParticlesBg from "./components/ParticlesBg";
 import Contact from "./sections/Contact";
 import Education from "./sections/Education";
 import Experience from "./sections/Experience";
@@ -11,11 +10,9 @@ import Skills from "./sections/Skills";
 const App = () => {
   return (
     <div>
-      <div className="mesh-bg" />
-      <div className="noise-overlay" />
-      <ParticlesBg />
       <Navbar />
-      <main className="pt-16">
+
+      <main className="pt-24">
         <Home />
         <Skills />
         <Projects />
