@@ -3,63 +3,69 @@ import { experienceData } from "../data/experience";
 const Experience = () => {
   return (
     <section id="experience" className="pb-24">
-      <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-3xl font-semibold tracking-tight">Experience</h2>
-        <p className="mt-2 text-[var(--text-muted)]">
-          Professional experience and responsibilities
-        </p>
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="flex items-baseline gap-6 mb-14">
+          <h2 className="text-4xl font-bold tracking-tight">Experience</h2>
+          <div className="flex-1 h-px bg-[var(--border)]" />
+        </div>
 
-        <div className="mt-12 space-y-14">
-          {experienceData.map((exp) => (
-            <div key={exp.role} className="relative pl-6">
-              <span className="absolute left-0 top-2 h-2.5 w-2.5 rounded-full bg-[var(--accent)]" />
-
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
-                <h3 className="text-lg font-semibold">{exp.role}</h3>
-                <span className="text-sm text-[var(--text-muted)]">
-                  {exp.duration}
-                </span>
-              </div>
-
-              <p className="mt-1 text-sm font-medium">
-                {exp.company}
-                {exp.location && (
-                  <span className="text-[var(--text-muted)]">
-                    {" "}
-                    • {exp.location}
-                  </span>
-                )}
-              </p>
-
-              <ul className="mt-4 space-y-2 text-sm text-[var(--text-muted)] leading-relaxed">
-                {exp.points.map((point) => (
-                  <li key={point}>• {point}</li>
-                ))}
-              </ul>
-
-              {exp.tech && (
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {exp.tech.map((item) => (
-                    <span
-                      key={item}
-                      className="
-                        px-3 py-1
-                        text-xs font-medium
-                        text-[var(--text-muted)]
-                        border border-[var(--border)]
-                        rounded-md
-                        transition
-                        hover:border-[var(--accent)]
-                        hover:text-[var(--accent)]
-                      "
-                    >
-                      {item}
-                    </span>
-                  ))}
+        <div className="divide-y divide-[var(--border)]">
+          {experienceData.map((exp) => {
+            const isCurrent = exp.duration.includes("Present");
+            return (
+              <div
+                key={exp.role}
+                className="py-10 flex flex-col sm:flex-row gap-6 sm:gap-12"
+              >
+                <div className="sm:w-48 shrink-0">
+                  <p className="text-xs font-mono text-[var(--text-muted)] leading-relaxed">
+                    {exp.duration.replace(" – ", "\n–\n")}
+                  </p>
+                  {isCurrent && (
+                    <div className="mt-2 flex items-center gap-1.5">
+                      <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
+                      <span className="text-xs text-green-500 font-medium">
+                        Current
+                      </span>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-          ))}
+
+                <div className="flex-1">
+                  <h3 className="text-lg font-semibold">{exp.role}</h3>
+                  <p className="text-sm text-[var(--text-muted)] mt-1">
+                    {exp.company}
+                    {exp.location && <span> · {exp.location}</span>}
+                  </p>
+
+                  <ul className="mt-5 space-y-3">
+                    {exp.points.map((point) => (
+                      <li
+                        key={point}
+                        className="flex gap-4 text-sm text-[var(--text-muted)] leading-relaxed"
+                      >
+                        <span className="mt-[7px] h-px w-4 bg-[var(--accent)] shrink-0" />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {exp.tech && (
+                    <div className="mt-6 flex flex-wrap gap-x-4 gap-y-1">
+                      {exp.tech.map((item) => (
+                        <span
+                          key={item}
+                          className="text-xs font-mono text-[var(--text-muted)]"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

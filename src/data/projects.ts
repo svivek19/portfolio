@@ -8,6 +8,23 @@ export interface Project {
 
 export const projectsData: Project[] = [
   {
+    title: "VHub – Real-Time Chat Application",
+    description:
+      "Engineered a full-stack real-time chat platform using React, Node.js, Express, and MongoDB enabling instant messaging and live synchronization. Designed Redis-based caching for unread message counts and online presence, achieving O(1) access and reducing database load. Implemented real-time features including typing indicators, read receipts, reactions, and threaded replies using WebSockets. Validated scalability by seeding and handling 1M+ messages with consistent performance.",
+    tech: [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Redis",
+      "Socket.io",
+      "JWT",
+      "Cloudinary",
+    ],
+    liveUrl: "https://vhub-chat-app.vercel.app/",
+    githubUrl: "https://github.com/svivek19/VHub-frontend",
+  },
+  {
     title: "Learning Management System (LMS)",
     description:
       "A full-featured MERN-based LMS platform supporting multiple user roles (User, Instructor, Admin) with course management, payments, analytics, and cloud storage. Designed with scalability, security, and real-world use cases in mind.",

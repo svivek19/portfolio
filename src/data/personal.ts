@@ -4,7 +4,7 @@ export interface PersonalInfo {
   role: string;
   tagline: string;
   resume: string;
-  status: [];
+  currentStatus: string;
 }
 
 const statuses = [
@@ -15,10 +15,10 @@ const statuses = [
 export const personalInfo = {
   name: "Vivekananthan S",
   shortName: "Vivek",
-  role: "React & MERN Stack Developer",
+  role: "Full Stack Developer (MERN | Real-time Systems)",
   tagline:
-    "I build clean, scalable MERN applications with a strong focus on performance and user experience.",
+    "Full-stack MERN developer with 2 years of experience building scalable backend systems and real-time applications. Focused on performance optimization, caching strategies, and real-time synchronization.",
   resume:
-    "https://drive.google.com/file/d/1qgNGzyKg3xitTjglEU1ouidyrQ5y-sXu/view?usp=drive_link",
+    "https://drive.google.com/file/d/1fyxud_Syxkqhlvded5PZSh3KbjpFkakt/view?usp=drive_link",
   currentStatus: statuses[0],
 };
