@@ -19,6 +19,6 @@ export const personalInfo = {
   tagline:
     "Full-stack MERN developer with 2 years of experience building scalable backend systems and real-time applications. Focused on performance optimization, caching strategies, and real-time synchronization.",
   resume:
-    "https://drive.google.com/file/d/1fyxud_Syxkqhlvded5PZSh3KbjpFkakt/view?usp=drive_link",
+    "https://drive.google.com/file/d/1hgRCiMnQzAOFDJ60ZNnki0JTopss3_RB/view?usp=sharing",
   currentStatus: statuses[0],
 };
