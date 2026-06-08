@@ -1,138 +1,114 @@
-import { useEffect, useRef, useState } from "react";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { useState } from "react";
+import { Menu, X, Code2 } from "lucide-react";
+import { personalInfo } from "../data/personal";
+
+interface NavbarProps {
+  activeSection: string;
+}
 
 const NAV_ITEMS = [
-  "home",
-  "skills",
-  "projects",
-  "experience",
-  "contact",
-] as const;
+  { id: "home", label: "Home" },
+  { id: "skills", label: "Skills" },
+  { id: "projects", label: "Projects" },
+  { id: "experience", label: "Experience" },
+  { id: "contact", label: "Contact" },
+];
 
-const Navbar = () => {
-  const [theme, setTheme] = useState<string>(
-    () => localStorage.getItem("appTheme") || "light",
-  );
-  const [active, setActive] = useState<string>("home");
-  const [open, setOpen] = useState<boolean>(false);
-  const [scrolled, setScrolled] = useState(false);
-  const menuRef = useRef<HTMLDivElement | null>(null);
+const Navbar = ({ activeSection }: NavbarProps) => {
+  const [isOpen, setIsOpen] = useState(false);
 
-  const toggleTheme = () =>
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
-
-  useEffect(() => {
-    document.documentElement.classList.remove("light-mode", "dark-mode");
-    document.documentElement.classList.add(`${theme}-mode`);
-    localStorage.setItem("appTheme", theme);
-  }, [theme]);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    const sections = document.querySelectorAll("section[id]");
-    const observer = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
-      { root: null, rootMargin: "-50% 0px -50% 0px", threshold: 0 },
-    );
-    sections.forEach((s) => observer.observe(s));
-    return () => sections.forEach((s) => observer.unobserve(s));
-  }, []);
-
-  useEffect(() => {
-    const handleOutside = (e: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(e.target as Node))
-        setOpen(false);
-    };
-    if (open) document.addEventListener("mousedown", handleOutside);
-    return () => document.removeEventListener("mousedown", handleOutside);
-  }, [open]);
+  const scrollTo = (id: string) => {
+    setIsOpen(false);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
-    <nav
-      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
-        scrolled
-          ? "bg-[var(--bg)]/80 backdrop-blur-xl border-b border-[var(--border)]"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-6 py-4 relative">
-        <div className="flex justify-between items-center">
-          <a href="#home" className="flex items-center gap-2 group">
-            <span className="w-7 h-7 rounded-lg bg-[var(--accent)] flex items-center justify-center text-white text-xs font-bold tracking-tight">
-              VS
-            </span>
-            <span className="font-semibold text-base tracking-tight hidden sm:block">
-              Vivek
-            </span>
-          </a>
-
-          <ul className="hidden sm:flex items-center gap-1">
-            {NAV_ITEMS.map((item) => (
-              <li key={item}>
-                <a
-                  href={`#${item}`}
-                  onClick={() => setActive(item)}
-                  className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
-                    active === item
-                      ? "bg-[var(--accent)] text-white"
-                      : "text-[var(--text-muted)] hover:text-[var(--text)]"
-                  }`}
-                >
-                  {item[0].toUpperCase() + item.slice(1)}
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          <div className="flex items-center gap-3">
-            <button
-              onClick={toggleTheme}
-              className="w-8 h-8 rounded-full border border-[var(--border)] flex items-center justify-center text-[var(--text-muted)] hover:text-[var(--text)] hover:bg-[var(--card)] transition"
-            >
-              {theme === "light" ? <Moon size={15} /> : <Sun size={15} />}
-            </button>
-            <button
-              onClick={() => setOpen(!open)}
-              className="sm:hidden text-[var(--text-muted)]"
-            >
-              {open ? <X size={20} /> : <Menu size={20} />}
-            </button>
+    <nav className="nav-header">
+      <div className="max-w-[1100px] mx-auto px-6 h-[88px] flex items-center justify-between">
+        {/* Brand/Logo */}
+        <button
+          onClick={() => scrollTo("home")}
+          className="flex items-center gap-2 cursor-pointer border-none bg-transparent p-0 text-left"
+          aria-label="Scroll to Home"
+        >
+          <div className="w-8 h-8 rounded-lg bg-[#0066ff] flex items-center justify-center text-white">
+            <Code2 size={16} />
           </div>
+          <span className="font-semibold text-lg text-[#0f172a] tracking-tight font-sans">
+            {personalInfo.shortName} S
+          </span>
+        </button>
+
+        {/* Desktop links */}
+        <div className="hidden md:flex items-center gap-8">
+          {NAV_ITEMS.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => scrollTo(item.id)}
+              className={`nav-link border-none bg-transparent cursor-pointer p-0 font-sans ${
+                activeSection === item.id ? "active text-[#0066ff]" : ""
+              }`}
+            >
+              {item.label}
+              {activeSection === item.id && (
+                <span className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#0066ff] rounded-full" />
+              )}
+            </button>
+          ))}
         </div>
 
-        {open && (
-          <div
-            ref={menuRef}
-            className="sm:hidden absolute right-4 top-14 w-52 rounded-2xl bg-[var(--card)] border border-[var(--border)] overflow-hidden shadow-xl"
+        {/* CTA Button */}
+        <div className="hidden md:block">
+          <a
+            href={personalInfo.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-pill btn-pill-secondary font-sans"
+            style={{ textDecoration: "none" }}
           >
-            {NAV_ITEMS.map((item) => (
-              <button
-                key={item}
-                className={`w-full text-left px-5 py-3 text-sm transition ${
-                  active === item
-                    ? "text-[var(--accent)] font-medium bg-[var(--accent)]/5"
-                    : "text-[var(--text-muted)] hover:bg-[var(--card)]"
-                }`}
-                onClick={() => {
-                  document
-                    .getElementById(item)
-                    ?.scrollIntoView({ behavior: "smooth" });
-                  setActive(item);
-                  setOpen(false);
-                }}
-              >
-                {item[0].toUpperCase() + item.slice(1)}
-              </button>
-            ))}
-          </div>
-        )}
+            Download Resume
+          </a>
+        </div>
+
+        {/* Mobile menu button */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden p-2 text-[#64748b] hover:text-[#0f172a] bg-transparent border-none cursor-pointer"
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isOpen}
+        >
+          {isOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
       </div>
+
+      {/* Mobile Drawer */}
+      {isOpen && (
+        <div className="md:hidden absolute top-[88px] left-0 right-0 bg-white border-b border-[#f1f5f9] px-6 py-4 flex flex-col gap-4 shadow-lg animate-fade-in">
+          {NAV_ITEMS.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => scrollTo(item.id)}
+              className={`nav-link text-left py-2 border-none bg-transparent cursor-pointer font-sans w-full ${
+                activeSection === item.id ? "active text-[#0066ff]" : ""
+              }`}
+            >
+              {item.label}
+            </button>
+          ))}
+          <a
+            href={personalInfo.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-pill btn-pill-secondary text-center font-sans mt-2"
+            style={{ textDecoration: "none" }}
+          >
+            Download Resume
+          </a>
+        </div>
+      )}
     </nav>
   );
 };

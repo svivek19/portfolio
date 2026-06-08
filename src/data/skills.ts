@@ -33,13 +33,14 @@ export const skillsData: SkillCategory[] = [
       "REST API Development",
       "WebSockets (Socket.io)",
       "Firebase",
+      "Content-Driven Architecture",
     ],
   },
   {
     title: "Databases",
     icon: Database,
     description: "Designing and managing application data",
-    skills: ["MongoDB", "MySQL", "Redis"],
+    skills: ["MongoDB", "MySQL", "PostgreSQL", "Redis"],
   },
   {
     title: "Tools & Technologies",

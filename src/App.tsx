@@ -1,4 +1,6 @@
-import Navbar from "./components/Navbar";
+import { Layout } from "./components/Layout";
+import Snackbar from "./components/Snackbar";
+import { SnackbarProvider } from "./context/SnackbarContext";
 import Contact from "./sections/Contact";
 import Education from "./sections/Education";
 import Experience from "./sections/Experience";
@@ -9,10 +11,8 @@ import Skills from "./sections/Skills";
 
 const App = () => {
   return (
-    <div>
-      <Navbar />
-
-      <main className="pt-24">
+    <SnackbarProvider>
+      <Layout>
         <Home />
         <Skills />
         <Projects />
@@ -20,8 +20,9 @@ const App = () => {
         <Education />
         <Contact />
         <Footer />
-      </main>
-    </div>
+      </Layout>
+      <Snackbar />
+    </SnackbarProvider>
   );
 };
 
