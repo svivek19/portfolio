@@ -68,7 +68,7 @@ export const portfolioData: PortfolioData = {
     github: "https://github.com/svivek19",
     linkedin: "https://www.linkedin.com/in/svivek018/",
     leetcode: "https://leetcode.com/u/viveksivakumar/",
-    resumeUrl: "https://drive.google.com/file/d/1JlD8zJvPQSxtOI9pIWr2f_iZACaidXeS/view?usp=sharing",
+    resumeUrl: "https://drive.google.com/file/d/1bvaN4dvcELhXhBWM-L3UnWRec5bJtBvk/view?usp=sharing",
   },
   skills: [
     // Frontend
