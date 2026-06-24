@@ -66,9 +66,9 @@ export const portfolioData: PortfolioData = {
     phone: "", // Removed phone
     location: "Tamil Nadu, India (Open to relocate)",
     github: "https://github.com/svivek19",
-    linkedin: "https://www.linkedin.com/in/svivek018/",
+    linkedin: "https://www.linkedin.com/in/vivekananthansk/",
     leetcode: "https://leetcode.com/u/viveksivakumar/",
-    resumeUrl: "https://drive.google.com/file/d/1B7INBcp-_mnsg1LlXM4uOE6IFywvkErl/view?usp=sharing",
+    resumeUrl: "https://drive.google.com/file/d/1AGu_j4bTaT7gYGTgTfLbgUlcTYud6QHv/view?usp=drive_link",
   },
   skills: [
     // Frontend
