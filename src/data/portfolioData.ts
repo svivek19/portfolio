@@ -62,7 +62,7 @@ export const portfolioData: PortfolioData = {
     role: "Full-Stack Engineer",
     subTitle: "Engineering scalable backend architectures, high-performance API integrations, and robust database schemas.",
     bio: "I am a dedicated Full-Stack Engineer focused on building clean, high-performance web systems. I specialize in React/Next.js frontend systems, designing scalable Node.js/Express APIs, optimizing database operations (MongoDB, MySQL), and deploying production-ready services on cloud environments and VPS hosts.",
-    email: "svivek030503@gmail.com",
+    email: "vivekananthansk@gmail.com",
     phone: "", // Removed phone
     location: "Tamil Nadu, India (Open to relocate)",
     github: "https://github.com/svivek19",
